@@ -49,6 +49,20 @@ class LSE:
                 p = p.getProx()
         
             q.setProx(None)
+    
+    def Consultar(self, val):
+        p = self.Inicio
+        while (p != None and p.getInfo() != val):
+            p = p.getProx()
+
+        return p
+    
+    def Rem_Meio(self, r):
+        p = self.Inicio
+        while (p.getProx() != r):
+            p = p.getProx()
+
+        p.setProx(r.getProx())
 
     def Imprime(self):
         p = self.Inicio
@@ -61,11 +75,13 @@ class LSE:
 L = LSE()
 
 while True:
-    print("1 - Para inserir um valor ao início!")
+    print("\n1 - Para inserir um valor ao início!")
     print("2 - Para imprimir a lista!")
     print("3 - Inserir um valor ao final!")
     print("4 - Apagar o valor no início!")
     print("5 - Apagar o valor no fim!")
+    print("6 - Consultar nó!")
+    print("7 - Remover um nó!")
     print("0 - Para sair!")
 
     op = int(input("\nDigite a opção: \n"))
@@ -87,3 +103,27 @@ while True:
         L.Rem_Inicio()
     if(op == 5):
         L.Rem_Fim()
+    if(op == 6):
+        val = int(input("Digite o valor a procurar: "))
+        r = L.Consultar(val)
+        if(r == None):
+            print("\nValor não existe na lista!")
+        else:
+            print("\nValor encontrado:", r.getInfo())
+    if(op == 7):
+        val = int(input("Digite o valor a remover: "))
+        r = L.Consultar(val)
+        if(r == None):
+            print("\nValor não existe na lista!")
+        else:
+            if(r == L.Inicio):
+                L.Rem_Inicio()
+            else:
+                if(r.getProx() == None):
+                    L.Rem_Fim()
+                else:
+                    L.Rem_Meio(r)
+            
+            print("\nValor Removido: ", r.getInfo())
+            print("Lista atualizada:")
+            L.Imprime()              
