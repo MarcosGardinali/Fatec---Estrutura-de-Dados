@@ -78,6 +78,20 @@ class LSE:
         p.setProx(q.getProx())
         q.setProx(p)
         
+    def Ins_Ordenado(self, val):
+        q = self.Inicio
+        if(val < q.getInfo()):
+            self.Ins_Inicio(val)
+        else:
+            while(q != None and q.getInfo() < val):
+                q = q.getProx()
+                
+            if(q == None):
+                self.Ins_Fim(val)
+            else:
+                self.Ins_Antes(q, val)
+            
+        
 
     def Imprime(self):
         p = self.Inicio
@@ -99,6 +113,7 @@ while True:
     print("7 - Remover um nó!")
     print("8 - Inserir depois de um nó!")
     print("9 - Inserir antes de um nó!")
+    print("10 - Inserir de forma ordenada!")
     print("0 - Para sair!")
 
     op = int(input("\nDigite a opção: \n"))
@@ -165,4 +180,11 @@ while True:
             if(r == L.Inicio):
                 L.Ins_Inicio(val)
             else:
-                L.Ins_Antes(r, val)  
+                L.Ins_Antes(r, val)
+                
+    if(op == 10):
+        val = int(input("Insira o valor a ser inserido de forma ordenada: "))
+        if(L.Inicio == None):
+            L.Ins_Inicio(val)
+        else:
+            L.Ins_Ordenado(val)
