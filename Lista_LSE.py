@@ -63,6 +63,21 @@ class LSE:
             p = p.getProx()
 
         p.setProx(r.getProx())
+        
+    def Ins_Depois(self, r, val):
+        p = No(val)
+        p.setProx(r.getProx())
+        r.setProx(p)
+        
+    def Ins_Antes(self, r, val):
+        p = No(val)
+        q = self.Inicio
+        while(q.getProx() != r):
+            q = q.getProx()
+        
+        p.setProx(q.getProx())
+        q.setProx(p)
+        
 
     def Imprime(self):
         p = self.Inicio
@@ -82,6 +97,8 @@ while True:
     print("5 - Apagar o valor no fim!")
     print("6 - Consultar nó!")
     print("7 - Remover um nó!")
+    print("8 - Inserir depois de um nó!")
+    print("9 - Inserir antes de um nó!")
     print("0 - Para sair!")
 
     op = int(input("\nDigite a opção: \n"))
@@ -126,4 +143,26 @@ while True:
             
             print("\nValor Removido: ", r.getInfo())
             print("Lista atualizada:")
-            L.Imprime()              
+            L.Imprime()
+    if(op == 8):
+        val = int(input("Digite o valor a procurar: "))
+        r = L.Consultar(val)
+        if(r == None):
+            print("\n Valor Não existe na lista!")
+        else:
+            val = int(input("Digite o valor a inserir: "))
+            if(r.getProx == None):
+                L.Ins_Fim(val)
+            else:
+                L.Ins_Depois(r, val)
+    if(op == 9):
+        val = int(input("Digite o valor a procurar: "))
+        r = L.Consultar(val)
+        if(r == None):
+            print("\n Valor Não existe na lista!")
+        else:
+            val = int(input("Digite o valor a inserir: "))     
+            if(r == L.Inicio):
+                L.Ins_Inicio(val)
+            else:
+                L.Ins_Antes(r, val)  
