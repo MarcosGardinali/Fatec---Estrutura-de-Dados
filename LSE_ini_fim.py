@@ -113,6 +113,7 @@ while True:
     print("6 - Consultar um No! ")
     print("7 - Transferir um No para o Fim! ")
     print("8 - Transferir um No para o Início! ")
+    print("9 - Remover ocorrencias repetidas")    #Esta opcao valera nota da P1
     print("0 - Sair do Programa! ")
     
     op = int(input("\n Digite a opção: "))
