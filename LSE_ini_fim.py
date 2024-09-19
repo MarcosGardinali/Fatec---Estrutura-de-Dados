@@ -101,6 +101,27 @@ class LSE:
             p.setProx(r.getProx())
         
         self.Ins_Inicio(r.getInfo())
+    
+    
+    def Rem_Meio(self, r):
+        p = self.Inicio
+        while (p.getProx() != r):
+            p = p.getProx()
+
+        p.setProx(r.getProx())
+    
+    def Rem_Rep(self):
+        p = self.Inicio
+        while (p is not None):
+            q = p
+            while (q.getProx() is not None):
+                if (p.getInfo() == q.getProx().getInfo()):
+                    q.setProx(q.getProx().getProx())
+                    if (q.getProx() is None):
+                        self.Fim = q
+                else:
+                    q = q.getProx()
+            p = p.getProx()     
         
         
 L = LSE()
@@ -169,4 +190,9 @@ while True:
                 print("\nEste Nó já é o primeiro!")
             else:
                 L.Trans_Inicio(r)
+    elif(op == 9):
+        if(L.Inicio == None):
+            print("\n Lista Vazia!")
+        else:
+            L.Rem_Rep()
            
